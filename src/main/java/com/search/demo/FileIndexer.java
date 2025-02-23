@@ -6,15 +6,11 @@ import org.apache.lucene.index.IndexWriter;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.zip.GZIPInputStream;
 
 public class FileIndexer {
     private final IndexWriter writer;
     // file to index
     private final Path filePath;
-    private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSS");
 
     public FileIndexer(IndexWriter writer, Path filePath) throws IOException {
         this.writer = writer;
@@ -26,9 +22,6 @@ public class FileIndexer {
         InputStream inputStream = null;
         try {
             inputStream = Files.newInputStream(filePath);
-            if (filePath.toFile().getName().endsWith(".gz")) {
-                inputStream = new GZIPInputStream(inputStream);
-            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

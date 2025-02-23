@@ -52,7 +52,7 @@ public class IndexingManager {
             if (fileToIndex == null) {
                 continue;
             }
-            System.out.println("indexing file: " + fileToIndex.toAbsolutePath());
+
             FileIndexer fileIndexer = new FileIndexer(writer, fileToIndex);
             // System.out.println("sending file: " + fileToIndex);
             while (getPendingTaskQueueSize() > MAX_TASK_QUEUE_SIZE) {
